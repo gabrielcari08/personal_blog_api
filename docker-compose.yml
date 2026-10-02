@@ -1,0 +1,63 @@
+services:
+  # ============================================================================
+  # PostgreSQL
+  # ============================================================================
+  db:
+    image: postgres:16-alpine
+
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-app_db}
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-app_db}",
+        ]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  # ============================================================================
+  # FastAPI
+  # ============================================================================
+  api:
+    build:
+      context: .
+      target: runner
+
+    restart: unless-stopped
+
+    command: uvicorn app.entrypoints.api.v1.main:app --host 0.0.0.0 --port 8000 --reload
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - ./app:/app/app
+      - ./tests:/app/tests
+      - ./specs:/app/specs
+
+    env_file:
+      - .env
+
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-app_db}
+      SECRET_KEY: ${SECRET_KEY:-dev-secret-key-change-in-prod}
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
