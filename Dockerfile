@@ -57,4 +57,4 @@ EXPOSE 8000
 
 # Comando que Docker ejecuta cuando se inicia el contendeor
 # Puede modificarse según la estructura del proyecto.
-CMD ["uvicorn", "app.entrypoints.api.v1.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.entrypoints.api.main:app", "--host", "0.0.0.0", "--port", "8000"]

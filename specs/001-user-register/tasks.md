@@ -316,7 +316,7 @@ Conventions:
 - [ ] Implement `POST /api/v1/users/register` returning `201` with `UserOutput` (`role: USER`) and login-redirect message.
 - [ ] Map validation errors to `400` and duplicates to `409` with distinct codes.
 - [ ] Assert response contains no token field and role is always `USER` even when payload includes `role: ADMIN`.
-- [ ] Test matrix: success `201`, payload with `ADMIN` still yields `USER`, duplicate username `409`, duplicate email different-case `409`, bad email `400`, short/long username `400`, username with spaces `400` (including ` user01AB `), short/long password `400`, missing fields `400`.
+- [ ] Test matrix: success `201`, payload with `ADMIN` still yields `USER`, duplicate username `409`, duplicate email different-case `409`, bad email `400`, short/long username `400`, username with spaces `400` (including `user01AB`), short/long password `400`, missing fields `400`.
 
 **Done when:**
 
