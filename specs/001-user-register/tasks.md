@@ -94,11 +94,11 @@ Conventions:
 
 **Steps:**
 
-- [ ] Define `RegisterInput` with raw `username`, trimmed + EmailStr `email`, raw `password` (no `role` field accepted).
-- [ ] Define `LoginInput` with raw `identifier` and raw `password`.
-- [ ] Define `PromoteInput` with literal `role` restricted to `ADMIN`.
-- [ ] Define `UserOutput` (`id`, `username`, `email`, `role`) and `LoginOutput` (`access_token`, `token_type`).
-- [ ] Write tests for: email surrounding spaces trimmed and accepted, invalid email rejected, whitespace-only email rejected, missing fields rejected, `PromoteInput` rejects non-`ADMIN` roles.
+- [x] Define `RegisterInput` with raw `username`, trimmed + EmailStr `email`, raw `password` (no `role` field accepted).
+- [x] Define `LoginInput` with raw `identifier` and raw `password`.
+- [x] Define `PromoteInput` with literal `role` restricted to `ADMIN`.
+- [x] Define `UserOutput` (`id`, `username`, `email`, `role`) and `LoginOutput` (`access_token`, `token_type`).
+- [x] Write tests for: email surrounding spaces trimmed and accepted, invalid email rejected, whitespace-only email rejected, missing fields rejected, `PromoteInput` rejects non-`ADMIN` roles.
 
 **Done when:**
 
