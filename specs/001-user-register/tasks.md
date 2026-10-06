@@ -22,12 +22,12 @@ Conventions:
 
 **Steps:**
 
-- [ ] Define `UserValidationException` for length, whitespace, required-field, and invalid-role violations.
-- [ ] Define `DuplicateUsernameException` and `DuplicateEmailException`.
-- [ ] Define `InvalidCredentialsException` with a single generic message (no cause detail).
-- [ ] Define `ForbiddenException` for non-admin promotion attempts.
-- [ ] Define `UserNotFoundException` for promotion of a missing target.
-- [ ] Export all exceptions from the module `__init__` if applicable.
+- [x] Define `UserValidationException` for length, whitespace, required-field, and invalid-role violations.
+- [x] Define `DuplicateUsernameException` and `DuplicateEmailException`.
+- [x] Define `InvalidCredentialsException` with a single generic message (no cause detail).
+- [x] Define `ForbiddenException` for non-admin promotion attempts.
+- [x] Define `UserNotFoundException` for promotion of a missing target.
+- [x] Export all exceptions from the module `__init__` if applicable.
 
 **Done when:**
 
@@ -47,12 +47,12 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement pure `@dataclass` `User` with fields `id`, `username`, `email`, `password_hash`, `role`, `created_at` (no framework imports).
-- [ ] Enforce username 8-20 inclusive and rejection of any whitespace (leading, trailing, internal).
-- [ ] Enforce non-empty username and non-empty email guards in domain.
-- [ ] Enforce plain-password length 8-20 check helper (hash itself is not built here).
-- [ ] Enforce role is exactly `USER` or `ADMIN`, defaulting to `USER` when not supplied.
-- [ ] Write unit tests for: short/long username, whitespace variants (`my user01`, ` user01AB`, `user01AB `), empty values, password 7/8/20/21 boundaries, default role `USER`, invalid role rejected.
+- [x] Implement pure `@dataclass` `User` with fields `id`, `username`, `email`, `password_hash`, `role`, `created_at` (no framework imports).
+- [x] Enforce username 8-20 inclusive and rejection of any whitespace (leading, trailing, internal).
+- [x] Enforce non-empty username and non-empty email guards in domain.
+- [x] Enforce plain-password length 8-20 check helper (hash itself is not built here).
+- [x] Enforce role is exactly `USER` or `ADMIN`, defaulting to `USER` when not supplied.
+- [x] Write unit tests for: short/long username, whitespace variants (`my user01`, ` user01AB`, `user01AB `), empty values, password 7/8/20/21 boundaries, default role `USER`, invalid role rejected.
 
 **Done when:**
 
@@ -72,10 +72,10 @@ Conventions:
 
 **Steps:**
 
-- [ ] Define `UserRepository` ABC with `get_by_id`, `get_by_username`, `get_by_email_normalized`, `get_by_identifier`, `save`, `update`.
-- [ ] Document case-sensitive username vs case-insensitive (lowered) email contract in docstrings.
-- [ ] Define `PasswordHasher` ABC with `hash` and `verify`.
-- [ ] Verify no imports of FastAPI, SQLAlchemy, Pydantic, or Passlib in `app/domain`.
+- [x] Define `UserRepository` ABC with `get_by_id`, `get_by_username`, `get_by_email_normalized`, `get_by_identifier`, `save`, `update`.
+- [x] Document case-sensitive username vs case-insensitive (lowered) email contract in docstrings.
+- [x] Define `PasswordHasher` ABC with `hash` and `verify`.
+- [x] Verify no imports of FastAPI, SQLAlchemy, Pydantic, or Passlib in `app/domain`.
 
 **Done when:**
 
