@@ -13,8 +13,12 @@ class RegisterInput(BaseModel):
     email: EmailStr
     password: str = Field(min_length=1)
 
+    # Decorador Pydantic que le indica a la clase:
+    # "Ejecuta esta función de validación sobre el campo email"
+    # mode="before": Pydantic intenta convertir el dato a un tipo EmailStr
     @field_validator("email", mode="before")
     @classmethod
+    # Funcion que elimina los espacios en blanco del email en caso de que hayan.
     def strip_email(cls, value: object) -> object:
         """Recorta los espacios del correo antes de validar el formato."""
         if isinstance(value, str):
@@ -34,6 +38,7 @@ class LoginInput(BaseModel):
 class PromoteInput(BaseModel):
     """Datos de entrada para otorgar el rol administrador."""
 
+    # Literal: Significa que el valor de "role" solo puede ser "ADMIN".
     role: Literal["ADMIN"]
 
 # DTOs de salida
@@ -41,7 +46,7 @@ class PromoteInput(BaseModel):
 class UserOutput(BaseModel):
     """Datos de salida de un usuario."""
 
-    id: str
+    id: int
     username: str
     email: str
     role: Literal["USER", "ADMIN"]

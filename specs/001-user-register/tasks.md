@@ -117,13 +117,13 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `RegisterUser.execute` following plan pseudocode order: required check, email trim, username whitespace rejection, length checks, format check, uniqueness checks, hash, save with hardcoded `role=USER`.
-- [ ] Ensure any client-supplied role is ignored and returned value contains no token.
-- [ ] Test success path returns user with `role=USER` and no token field.
-- [ ] Test payload containing `role=ADMIN` still yields `USER`.
-- [ ] Test duplicate username exact-case fails and different-case succeeds.
-- [ ] Test duplicate email same-case and different-case both fail.
-- [ ] Test username/password boundaries and username-with-spaces rejection.
+- [x] Implement `RegisterUser.execute` following plan pseudocode order: required check, email trim, username whitespace rejection, length checks, format check, uniqueness checks, hash, save with hardcoded `role=USER`.
+- [x] Ensure any client-supplied role is ignored and returned value contains no token.
+- [x] Test success path returns user with `role=USER` and no token field.
+- [x] Test payload containing `role=ADMIN` still yields `USER`.
+- [x] Test duplicate username exact-case fails and different-case succeeds.
+- [x] Test duplicate email same-case and different-case both fail.
+- [x] Test username/password boundaries and username-with-spaces rejection.
 
 **Done when:**
 

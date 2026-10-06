@@ -11,7 +11,7 @@ class UserRepository(ABC):
 
     # Metodos de consulta (get_by...)
     @abstractmethod
-    def get_by_id(self, user_id: str) -> Optional[User]:
+    def get_by_id(self, user_id: int) -> Optional[User]:
         """Busca un usuario por su identificador opaco."""
         raise NotImplementedError
 

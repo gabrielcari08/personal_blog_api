@@ -34,7 +34,7 @@ class User:
     username: str
     email: str
     password_hash: str
-    id: Optional[str] = None
+    id: Optional[int] = None
     role: str = "USER"
     created_at: Optional[datetime] = None
 
