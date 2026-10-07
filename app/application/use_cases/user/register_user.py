@@ -4,8 +4,7 @@ from app.application.dtos.user_dtos import RegisterInput, UserOutput
 from app.domain.entities.user import User, validate_plain_password
 from app.domain.exceptions.user_exceptions import (
     DuplicateEmailException,
-    DuplicateUsernameException,
-    UserValidationException,
+    DuplicateUsernameException
 )
 from app.domain.repositories.user_repository import UserRepository
 from app.domain.services.password_hasher_service import PasswordHasher
@@ -31,8 +30,6 @@ class RegisterUser:
         if self._repository.get_by_email_normalized(trimmed_email.lower()) is not None:
             raise DuplicateEmailException("Email already registered.")
 
-        # Verifica que la contraseña cunpla con los requisitos.
-        validate_plain_password(data.password)
         # Hashea la contraseña
         password_hash = self._hasher.hash(data.password)
 

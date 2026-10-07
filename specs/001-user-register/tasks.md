@@ -142,12 +142,12 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement identifier routing: contains `@` goes to lowered-trimmed email lookup, otherwise exact username lookup with no trimming.
-- [ ] Raise the same `InvalidCredentialsException` for unknown user and wrong password.
-- [ ] Issue stateless token via injected token service carrying `user_id`, `username`, and `role` (mock in unit tests).
-- [ ] Test login via email, via username, via differently-cased email succeeds with correct role in token request.
-- [ ] Test wrong password and unknown identifier raise identical exception type and message.
-- [ ] Test empty identifier and empty password raise validation, not credentials.
+- [x] Implement identifier routing: contains `@` goes to lowered-trimmed email lookup, otherwise exact username lookup with no trimming.
+- [x] Raise the same `InvalidCredentialsException` for unknown user and wrong password.
+- [x] Issue stateless token via injected token service carrying `user_id`, `username`, and `role` (mock in unit tests).
+- [x] Test login via email, via username, via differently-cased email succeeds with correct role in token request.
+- [x] Test wrong password and unknown identifier raise identical exception type and message.
+- [x] Test empty identifier and empty password raise validation, not credentials.
 
 **Done when:**
 

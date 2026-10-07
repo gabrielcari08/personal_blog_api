@@ -21,11 +21,12 @@ class InMemoryUserRepository(UserRepository):
 
     def __init__(self) -> None:
         """Inicializa los indices por id, username y correo normalizado."""
-        self._by_id: Dict[str, User] = {}
+        self._by_id: Dict[int, User] = {}
         self._by_username: Dict[str, User] = {}
         self._by_email: Dict[str, User] = {}
+        self._next_id = 1
 
-    def get_by_id(self, user_id: str) -> Optional[User]:
+    def get_by_id(self, user_id: int) -> Optional[User]:
         """Busca por id."""
         return self._by_id.get(user_id)
 
@@ -44,12 +45,16 @@ class InMemoryUserRepository(UserRepository):
         return self.get_by_username(identifier)
 
     def save(self, user: User) -> User:
-        """Guarda indexando por id, username y correo normalizado."""
-        assert user.id is not None
-        self._by_id[user.id] = user
-        self._by_username[user.username] = user
-        self._by_email[user.email.lower()] = user
-        return user
+        """Guarda asignando un id serial e indexando por username y correo."""
+        from dataclasses import replace
+
+        stored = replace(user, id=self._next_id)
+        self._next_id += 1
+        assert stored.id is not None
+        self._by_id[stored.id] = stored
+        self._by_username[stored.username] = stored
+        self._by_email[stored.email.lower()] = stored
+        return stored
 
     def update(self, user: User) -> User:
         """Actualiza el usuario existente."""

@@ -39,34 +39,37 @@ app/
 
 The core of the application. It MUST NOT import any external frameworks or libraries (No FastAPI, SQLAlchemy, Passlib, Pydantic, etc.).
 
-- **`entities/[entity_name].py`**: Pure business entity using native Python `@dataclass`. Represents domain concepts (e.g., `Patient`, `Appointment`, `User`).
-- **`repositories/[entity_name]_repository.py`**: Abstract Base Class (`ABC`) defining contracts/interfaces for persistence (e.g., `PatientRepository.get_by_id()`, `PatientRepository.save()`). Apply the dependency inversion concept.
-- **`services/[service_name]_service.py`**: Domain service interfaces (`ABC`) for business operations that don't belong to a single entity.
-- **`exceptions/[entity_name]_exceptions.py`**: Custom domain exceptions (e.g., `PatientNotFoundException`, `DuplicatePatientException`).
+- **`entities/[entity_name].py`**: Pure business entities using native Python `@dataclass`. Must enforce domain invariants and self-validate via `__post_init__`.
+- **`repositories/[entity_name]_repository.py`**: Abstract Base Classes (`ABC`) defining contracts for data access and persistence operations (e.g., `UserRepository.get_by_identifier()`).
+- **`services/[service_name]_service.py`**: Abstract Base Classes (`ABC`) for domain tool interfaces (e.g., `PasswordHasher`, `TokenService`, `EmailSender`).
+- **`exceptions/[entity_name]_exceptions.py`**: Custom domain exceptions for business error states (e.g., `UserNotFoundException`, `DuplicateEmailException`).
 
 #### 2. Application Layer (`app/application/`)
 
-Orchestrates application workflow. Coordinates domain entities and repositories to fulfill specific user actions.
-It does not query the database (that's the infrastructure's job).
+Orchestrates application workflow and business process execution. Coordinates domain entities, repositories, and domain services to fulfill specific user actions.
 
 - **`use_cases/[entity_name]/`**: One class per use case / operation.
-  - _Examples for CRUD:_ `create_[entity].py`, `get_[entity]_by_id.py`, `list_[entities].py`, `update_[entity].py`, `delete_[entity].py`.
-  - _Responsibility:_ Receives abstract repositories via dependency injection, executes the workflow, and returns domain entities or DTOs.
-- **`dtos/[entity_name]_dtos.py`**: Data Transfer Objects (Pydantic models or dataclasses) defining input and output data structures for the use cases.
+  - **Responsibility:** Receives abstract repositories and services via dependency injection, coordinates the workflow, delegates persistence to repositories, and returns DTOs.
+  - **Validation boundaries (CRITICAL):**
+    - DO NOT perform primitive input validations (e.g., `isinstance`, empty checks, string lengths). Pydantic DTOs handle API format validation.
+    - DO NOT duplicate domain invariant validations. Domain Entities autovalidate upon instantiation.
+    - ONLY handle orchestration logic and repository-level business rules (e.g., uniqueness checks against DB).
+  - **Service usage:** Use abstract domain service interfaces (from `app.domain.services`). Never define inline protocols or concrete implementations here.
+- **`dtos/[entity_name]_dtos.py`**: Data Transfer Objects (Pydantic models) defining input and output data structures for the use cases.
 
 #### 3. Infrastructure Layer (`app/infrastructure/`)
 
 Contains all technical implementations, database models, and external tool integrations.
 
-- **`db/models/[entity_name]_model.py`**: ORM models (SQLAlchemy) mapping physical PostgreSQL tables.
+- **`db/models/[entity_name]_model.py`**: ORM models (SQLAlchemy) mapping physical database tables.
 - **`repositories/postgres_[entity_name]_repository.py`**: Concrete implementation of the abstract repository defined in `domain/repositories/`. Maps ORM models to/from Domain Entities.
-- **`services/`**: Concrete implementations of external domain services (e.g., cryptography, email providers, PDF generators).
+- **`services/`**: Concrete implementations of abstract domain services using third-party libraries (e.g., `passlib` for `PasswordHasher`, `PyJWT` for `TokenService`).
 
 #### 4. Entrypoints Layer (`app/entrypoints/`)
 
 Exposes the system functionality through HTTP APIs while remaining completely decoupled from core logic.
 
-- **`api/v1/routes/[entity_name]_router.py`**: FastAPI routers. Maps HTTP endpoints (`POST`, `GET`, `PUT`, `DELETE`) to Application Use Cases. Handles HTTP status codes and maps Domain Exceptions to HTTP Error responses.
+- **`api/v1/routes/[entity_name]_router.py`**: FastAPI routers. Maps HTTP endpoints to Application Use Cases. Handles HTTP status codes and maps Domain Exceptions to HTTP Error responses.
 - **`api/v1/dependencies.py`**: FastAPI dependency injection setup (`Depends`). Instantiates infrastructure classes and injects them into Use Cases.
 
 ## Workflow (Spec-Driven Development)
