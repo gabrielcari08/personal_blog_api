@@ -1,6 +1,5 @@
 """Pruebas unitarias del caso de uso LoginUser."""
 
-from types import SimpleNamespace
 from typing import Dict, List, Optional, Tuple
 
 import pytest
@@ -9,10 +8,7 @@ from pydantic import ValidationError
 from app.application.dtos.user_dtos import LoginInput
 from app.application.use_cases.user.login_user import LoginUser
 from app.domain.entities.user import User
-from app.domain.exceptions.user_exceptions import (
-    InvalidCredentialsException,
-    UserValidationException,
-)
+from app.domain.exceptions.user_exceptions import InvalidCredentialsException
 from app.domain.repositories.user_repository import UserRepository
 from app.domain.services.password_hasher_service import PasswordHasher
 
@@ -176,20 +172,12 @@ def test_wrong_password_and_unknown_user_raise_identical_error():
 
 def test_empty_identifier_and_password_raise_validation():
     """Identificador o clave vacios dan error de validacion, no de credenciales."""
-    # Nivel DTO: Pydantic rechaza los vacios antes del caso de uso.
+    # La presencia la valida el DTO (min_length=1) antes del caso de uso.
     with pytest.raises(ValidationError):
         LoginInput(identifier="", password="password12")
 
     with pytest.raises(ValidationError):
         LoginInput(identifier="validuser01", password="")
-
-    # Nivel caso de uso: guardia defensiva con el mismo tipo de error.
-    use_case, _ = make_login()
-    with pytest.raises(UserValidationException):
-        use_case.execute(SimpleNamespace(identifier="", password="password12"))
-
-    with pytest.raises(UserValidationException):
-        use_case.execute(SimpleNamespace(identifier="validuser01", password=""))
 
 
 def test_username_with_spaces_does_not_match():

@@ -166,9 +166,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `PromoteUser.execute(requester, target_user_id, new_role)` requiring `requester.role == ADMIN`, existing target, and `new_role == ADMIN`.
-- [ ] Raise `ForbiddenException` for non-admin, `UserNotFoundException` for missing target, `ValidationException` for invalid role.
-- [ ] Test admin promotion succeeds, non-admin yields forbidden with no change, missing target yields not-found, non-`ADMIN` role yields validation.
+- [x] Implement `PromoteUser.execute(requester, target_user_id, new_role)` requiring `requester.role == ADMIN`, existing target, and `new_role == ADMIN`.
+- [x] Raise `ForbiddenException` for non-admin, `UserNotFoundException` for missing target, `ValidationException` for invalid role.
+- [x] Test admin promotion succeeds, non-admin yields forbidden with no change, missing target yields not-found, non-`ADMIN` role yields validation.
 
 **Done when:**
 

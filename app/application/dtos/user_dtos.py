@@ -4,6 +4,8 @@ from typing import Literal
 
 from pydantic import BaseModel, EmailStr, Field, field_validator
 
+from app.domain.entities.user import validate_plain_password
+
 # DTOs de entrada
 
 class RegisterInput(BaseModel):
@@ -23,6 +25,13 @@ class RegisterInput(BaseModel):
         """Recorta los espacios del correo antes de validar el formato."""
         if isinstance(value, str):
             return value.strip()
+        return value
+
+    @field_validator("password")
+    @classmethod
+    def check_password_length(cls, value: str) -> str:
+        """Aplica la regla de longitud del dominio (8-20, sin recortar)."""
+        validate_plain_password(value)
         return value
 
 

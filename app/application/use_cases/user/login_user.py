@@ -1,25 +1,13 @@
 """Caso de uso para iniciar sesion (identificador flexible, fallo generico)."""
 
-from typing import Protocol
-
 from app.application.dtos.user_dtos import LoginInput, LoginOutput
-from app.domain.exceptions.user_exceptions import (
-    InvalidCredentialsException,
-    UserValidationException,
-)
+from app.domain.exceptions.user_exceptions import InvalidCredentialsException
 from app.domain.repositories.user_repository import UserRepository
 from app.domain.services.password_hasher_service import PasswordHasher
+from app.domain.services.token_service import TokenService
 
 # Mensaje unico para no revelar si fallo el identificador o la clave.
 _INVALID_CREDENTIALS_MESSAGE = "Invalid credentials."
-
-
-class TokenService(Protocol):
-    """Contrato minimo para emitir el token de sesion sin estado."""
-
-    def issue_token(self, user_id: str, username: str, role: str) -> str:
-        """Emite un token firmado con la identidad y el rol."""
-        ...
 
 
 class LoginUser:
@@ -39,7 +27,8 @@ class LoginUser:
 
     def execute(self, data: LoginInput) -> LoginOutput:
         """Valida credenciales y emite el token (mismo error generico siempre)."""
-        identifier = data.identifier.strip()
+        # Sin recorte previo: solo la via correo recorta (el username nunca se recorta).
+        identifier = data.identifier
 
         if "@" in identifier:
             # Via correo: se recorta y se normaliza a minusculas.
