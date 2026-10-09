@@ -228,8 +228,8 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `issue_token(user_id, username, role)` using `python-jose` and secret from environment (never hardcoded).
-- [ ] Test token decodes with expected subject, username, and role claims using the test secret.
+- [x] Implement `issue_token(user_id, username, role)` using `python-jose` and secret from environment (never hardcoded).
+- [x] Test token decodes with expected subject, username, and role claims using the test secret.
 
 **Done when:**
 
