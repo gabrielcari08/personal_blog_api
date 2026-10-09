@@ -187,9 +187,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Define `users` table with `id`, `username VARCHAR(20) UNIQUE NOT NULL`, `email NOT NULL`, `email_normalized UNIQUE NOT NULL`, `password_hash TEXT NOT NULL`, `role VARCHAR(5) NOT NULL DEFAULT USER` with CHECK (`USER`, `ADMIN`), `created_at TIMESTAMPTZ NOT NULL`.
-- [ ] Confirm no `is_active`, `email_verified`, or lockout columns are added.
-- [ ] Generate and review Alembic revision (create table + both UNIQUE constraints + role default; backfill existing rows to `USER` if altering).
+- [x] Define `users` table with `id`, `username VARCHAR(20) UNIQUE NOT NULL`, `email NOT NULL`, `email_normalized UNIQUE NOT NULL`, `password_hash TEXT NOT NULL`, `role VARCHAR(5) NOT NULL DEFAULT USER` with CHECK (`USER`, `ADMIN`), `created_at TIMESTAMPTZ NOT NULL`.
+- [x] Confirm no `is_active`, `email_verified`, or lockout columns are added.
+- [x] Generate and review Alembic revision (create table + both UNIQUE constraints + role default; backfill existing rows to `USER` if altering).
 
 **Done when:**
 
