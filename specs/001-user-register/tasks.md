@@ -208,8 +208,8 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `PasswordHasher` with Passlib Bcrypt `hash` and `verify`.
-- [ ] Test hash differs from plain text, verifies correctly, and rejects wrong password.
+- [x] Implement `PasswordHasher` with Passlib Bcrypt `hash` and `verify`.
+- [x] Test hash differs from plain text, verifies correctly, and rejects wrong password.
 
 **Done when:**
 
