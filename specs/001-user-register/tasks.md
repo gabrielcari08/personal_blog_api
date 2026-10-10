@@ -248,10 +248,10 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `get_by_id`, exact username lookup, lowered email lookup, identifier routing, `save`, and `update` (role change).
-- [ ] Map DB UNIQUE violations on `username` and `email_normalized` to domain duplicate exceptions.
-- [ ] Persist trimmed email with original casing plus lowered normalized copy and round-trip `role`.
-- [ ] Test case-sensitive username match, case-insensitive email match, duplicate persistence raises domain exceptions, stored email is trimmed, role persists and updates without altering other fields.
+- [x] Implement `get_by_id`, exact username lookup, lowered email lookup, identifier routing, `save`, and `update` (role change).
+- [x] Map DB UNIQUE violations on `username` and `email_normalized` to domain duplicate exceptions.
+- [x] Persist trimmed email with original casing plus lowered normalized copy and round-trip `role`.
+- [x] Test case-sensitive username match, case-insensitive email match, duplicate persistence raises domain exceptions, stored email is trimmed, role persists and updates without altering other fields.
 
 **Done when:**
 
