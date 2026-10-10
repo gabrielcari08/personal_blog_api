@@ -270,10 +270,10 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `ensure_admin_exists()` reading admin credentials exclusively from environment (`ADMIN_USERNAME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`); fail fast when missing.
-- [ ] Validate seed values with the same domain rules as registration, hash the password, save with `role=ADMIN`.
-- [ ] Ensure idempotency: existing admin by email (any casing) or any existing `ADMIN` means no change, no duplicate, no demotion; never log the password.
-- [ ] Test empty DB creates exactly one `ADMIN`, rerun changes nothing, differently-cased existing email prevents duplicates, missing env fails without creating a user.
+- [x] Implement `ensure_admin_exists()` reading admin credentials exclusively from environment (`ADMIN_USERNAME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`); fail fast when missing.
+- [x] Validate seed values with the same domain rules as registration, hash the password, save with `role=ADMIN`.
+- [x] Ensure idempotency: existing admin by email (any casing) or any existing `ADMIN` means no change, no duplicate, no demotion; never log the password.
+- [x] Test empty DB creates exactly one `ADMIN`, rerun changes nothing, differently-cased existing email prevents duplicates, missing env fails without creating a user.
 
 **Done when:**
 
