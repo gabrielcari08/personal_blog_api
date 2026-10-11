@@ -291,9 +291,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Wire session, repository, hasher, token service, `RegisterUser`, `LoginUser`, and `PromoteUser` via FastAPI `Depends`.
-- [ ] Provide `get_current_user` (token validation) and `require_admin` (role guard) dependencies.
-- [ ] Ensure routers will receive only use cases and guards, never sessions or repositories directly.
+- [x] Wire session, repository, hasher, token service, `RegisterUser`, `LoginUser`, and `PromoteUser` via FastAPI `Depends`.
+- [x] Provide `get_current_user` (token validation) and `require_admin` (role guard) dependencies.
+- [x] Ensure routers will receive only use cases and guards, never sessions or repositories directly.
 
 **Done when:**
 
