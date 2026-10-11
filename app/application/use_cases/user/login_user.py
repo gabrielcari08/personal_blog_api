@@ -49,4 +49,6 @@ class LoginUser:
             username=user.username,
             role=user.role,
         )
+
+        # Retorna el DTO con el token.
         return LoginOutput(access_token=token, token_type="bearer")

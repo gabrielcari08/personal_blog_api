@@ -336,12 +336,12 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `POST /api/v1/users/login` returning `200` with `LoginOutput` on success.
-- [ ] Map all credential mismatches to identical `401` bodies; missing fields to `400`.
-- [ ] Implement `PATCH /api/v1/users/{user_id}/role` behind `require_admin`: `200` on success, `401` unauthenticated, `403` non-admin, `404` missing target, `400` invalid role.
-- [ ] Test login via email `200`, via username `200`, via differently-cased email `200`, wrong password `401`, unknown identifier `401` with body identical to wrong password, missing fields `400`, token decodes to correct role.
-- [ ] Test promotion: admin token plus valid target yields `200` and `ADMIN`; user token yields `403` with no change; missing token yields `401`; unknown target yields `404`; invalid role yields `400`.
-- [ ] Test no logout or recovery routes exist (`POST /api/v1/users/logout` and password-reset paths return `404`).
+- [x] Implement `POST /api/v1/users/login` returning `200` with `LoginOutput` on success.
+- [x] Map all credential mismatches to identical `401` bodies; missing fields to `400`.
+- [x] Implement `PATCH /api/v1/users/{user_id}/role` behind `require_admin`: `200` on success, `401` unauthenticated, `403` non-admin, `404` missing target, `400` invalid role.
+- [x] Test login via email `200`, via username `200`, via differently-cased email `200`, wrong password `401`, unknown identifier `401` with body identical to wrong password, missing fields `400`, token decodes to correct role.
+- [x] Test promotion: admin token plus valid target yields `200` and `ADMIN`; user token yields `403` with no change; missing token yields `401`; unknown target yields `404`; invalid role yields `400`.
+- [x] Test no logout or recovery routes exist (`POST /api/v1/users/logout` and password-reset paths return `404`).
 
 **Done when:**
 

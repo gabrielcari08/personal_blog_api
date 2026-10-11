@@ -7,6 +7,9 @@ from fastapi.responses import JSONResponse
 from app.domain.exceptions.user_exceptions import (
     DuplicateEmailException,
     DuplicateUsernameException,
+    ForbiddenException,
+    InvalidCredentialsException,
+    UserNotFoundException,
     UserValidationException,
 )
 from app.entrypoints.api.v1.routes.user_router import router as user_router
@@ -49,6 +52,33 @@ def duplicate_email_handler(request: Request, error: DuplicateEmailException) ->
     return JSONResponse(
         status_code=status.HTTP_409_CONFLICT,
         content={'detail': str(error), 'code': 'duplicate_email'},
+    )
+
+
+@app.exception_handler(InvalidCredentialsException)
+def invalid_credentials_handler(request: Request, error: InvalidCredentialsException) -> JSONResponse:
+    """Mapea cualquier fallo de login al mismo 401 generico."""
+    return JSONResponse(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        content={'detail': str(error), 'code': 'invalid_credentials'},
+    )
+
+
+@app.exception_handler(ForbiddenException)
+def forbidden_handler(request: Request, error: ForbiddenException) -> JSONResponse:
+    """Mapea falta de rol ADMIN a 403."""
+    return JSONResponse(
+        status_code=status.HTTP_403_FORBIDDEN,
+        content={'detail': str(error), 'code': 'forbidden'},
+    )
+
+
+@app.exception_handler(UserNotFoundException)
+def user_not_found_handler(request: Request, error: UserNotFoundException) -> JSONResponse:
+    """Mapea objetivo inexistente a 404."""
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
+        content={'detail': str(error), 'code': 'user_not_found'},
     )
 
 
