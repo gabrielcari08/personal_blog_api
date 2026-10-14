@@ -89,10 +89,10 @@ Conventions:
 
 **Steps:**
 
-- [ ] Define `ArticleCreateInput` with raw `title` and raw `text` only (no `user_id`, no `created_at`); validators delegate to domain `validate_title` / `validate_text` so messages stay exact; no trimming.
-- [ ] Define `ArticleUpdateInput` with identical required shape (both fields required, full replacement).
-- [ ] Define `ArticleOutput` with `id`, `title`, `text`, `user_id`, `created_at` (the `user_id` enables frontend hide logic).
-- [ ] Write tests for: valid inputs pass through unchanged (spaces preserved), short/long title rejected with exact message, empty text rejected with `text is required`, 9/301-char text rejected with range message, extra `user_id`/`created_at` in payload is ignored or rejected (never accepted as input).
+- [x] Define `ArticleCreateInput` with raw `title` and raw `text` only (no `user_id`, no `created_at`); validators delegate to domain `validate_title` / `validate_text` so messages stay exact; no trimming.
+- [x] Define `ArticleUpdateInput` with identical required shape (both fields required, full replacement).
+- [x] Define `ArticleOutput` with `id`, `title`, `text`, `user_id`, `created_at` (the `user_id` enables frontend hide logic).
+- [x] Write tests for: valid inputs pass through unchanged (spaces preserved), short/long title rejected with exact message, empty text rejected with `text is required`, 9/301-char text rejected with range message, extra `user_id`/`created_at` in payload is ignored or rejected (never accepted as input).
 
 **Done when:**
 

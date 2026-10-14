@@ -1,5 +1,10 @@
 """DTOs de la aplicacion."""
 
+from app.application.dtos.article_dtos import (
+    ArticleCreateInput,
+    ArticleOutput,
+    ArticleUpdateInput,
+)
 from app.application.dtos.user_dtos import (
     LoginInput,
     LoginOutput,
@@ -14,4 +19,7 @@ __all__ = [
     "PromoteInput",
     "UserOutput",
     "LoginOutput",
+    "ArticleCreateInput",
+    "ArticleUpdateInput",
+    "ArticleOutput",
 ]
