@@ -22,10 +22,10 @@ Conventions:
 
 **Steps:**
 
-- [ ] Define `ArticleValidationException` for title/text violations (carries the exact spec messages).
-- [ ] Define `ArticleNotFoundException` for edit/delete/get of a missing article.
-- [ ] Define `ArticleForbiddenException` for non-owner USER mutation attempts (direct bypass).
-- [ ] Export all exceptions from the module `__init__` if applicable.
+- [x] Define `ArticleValidationException` for title/text violations (carries the exact spec messages).
+- [x] Define `ArticleNotFoundException` for edit/delete/get of a missing article.
+- [x] Define `ArticleForbiddenException` for non-owner USER mutation attempts (direct bypass).
+- [x] Export all exceptions from the module `__init__` if applicable.
 
 **Done when:**
 
