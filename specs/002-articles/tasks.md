@@ -44,12 +44,12 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement pure `@dataclass` `Article` with fields `id`, `title`, `user_id`, `text`, `created_at` (no framework imports).
-- [ ] Implement `validate_title` enforcing 8-20 raw characters with exact message `title must be 8-20 characters` (empty included, no trim).
-- [ ] Implement `validate_text` enforcing empty -> `text is required`, non-empty outside 10-300 -> `text must be 10-300 characters` (no trim).
-- [ ] Enforce raw counting: spaces, line breaks, emojis each count as 1 via plain length (no `strip()` anywhere).
-- [ ] Enforce `__post_init__` self-validation; `user_id` required, `created_at` optional and never validated from input.
-- [ ] Write unit tests for: title 7/8/20/21 boundaries, empty title, text empty, text 9/10/300/301 boundaries, whitespace-only text of length 3 (range message), 7 chars + 1 emoji passing title, surrounding spaces counted (not trimmed), valid construction preserves `user_id` with `created_at` unset.
+- [x] Implement pure `@dataclass` `Article` with fields `id`, `title`, `user_id`, `text`, `created_at` (no framework imports).
+- [x] Implement `validate_title` enforcing 8-20 raw characters with exact message `title must be 8-20 characters` (empty included, no trim).
+- [x] Implement `validate_text` enforcing empty -> `text is required`, non-empty outside 10-300 -> `text must be 10-300 characters` (no trim).
+- [x] Enforce raw counting: spaces, line breaks, emojis each count as 1 via plain length (no `strip()` anywhere).
+- [x] Enforce `__post_init__` self-validation; `user_id` required, `created_at` optional and never validated from input.
+- [x] Write unit tests for: title 7/8/20/21 boundaries, empty title, text empty, text 9/10/300/301 boundaries, whitespace-only text of length 3 (range message), 7 chars + 1 emoji passing title, surrounding spaces counted (not trimmed), valid construction preserves `user_id` with `created_at` unset.
 
 **Done when:**
 
@@ -68,9 +68,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Define `ArticleRepository` ABC with `get_by_id`, `list_all_desc`, `save`, `update`, `delete`.
-- [ ] Document in docstrings: `list_all_desc` returns full list most-recent-first with no pagination args; `update` persists only title/text; `delete` is a hard removal.
-- [ ] Verify no imports of FastAPI, SQLAlchemy, Pydantic in `app/domain`.
+- [x] Define `ArticleRepository` ABC with `get_by_id`, `list_all_desc`, `save`, `update`, `delete`.
+- [x] Document in docstrings: `list_all_desc` returns full list most-recent-first with no pagination args; `update` persists only title/text; `delete` is a hard removal.
+- [x] Verify no imports of FastAPI, SQLAlchemy, Pydantic in `app/domain`.
 
 **Done when:**
 
