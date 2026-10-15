@@ -41,7 +41,7 @@ def repository() -> Generator[PostgresUserRepository, None, None]:
     """Entrega un repositorio con sesion limpia por prueba."""
     session: Session = TestingSession()
     yield PostgresUserRepository(session)
-    session.execute(text("TRUNCATE users RESTART IDENTITY"))
+    session.execute(text("TRUNCATE articles, users RESTART IDENTITY"))
     session.commit()
     session.close()
 

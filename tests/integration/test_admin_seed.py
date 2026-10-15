@@ -43,7 +43,7 @@ def session(monkeypatch: pytest.MonkeyPatch) -> Generator[Session, None, None]:
     monkeypatch.setenv("ADMIN_PASSWORD", SEED_PASSWORD)
     current: Session = TestingSession()
     yield current
-    current.execute(text("TRUNCATE users RESTART IDENTITY"))
+    current.execute(text("TRUNCATE articles, users RESTART IDENTITY"))
     current.commit()
     current.close()
 

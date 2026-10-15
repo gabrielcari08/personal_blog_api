@@ -49,12 +49,12 @@ def _clean(monkeypatch: pytest.MonkeyPatch) -> Generator[None, None, None]:
     """Configura el secreto y limpia la tabla users por prueba."""
     monkeypatch.setenv("SECRET_KEY", TEST_SECRET)
     session = TestingSession()
-    session.execute(text("TRUNCATE users RESTART IDENTITY"))
+    session.execute(text("TRUNCATE articles, users RESTART IDENTITY"))
     session.commit()
     session.close()
     yield
     session = TestingSession()
-    session.execute(text("TRUNCATE users RESTART IDENTITY"))
+    session.execute(text("TRUNCATE articles, users RESTART IDENTITY"))
     session.commit()
     session.close()
 

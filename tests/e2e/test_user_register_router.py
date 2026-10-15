@@ -41,7 +41,7 @@ def _clean() -> Generator[None, None, None]:
     """Limpia la tabla users despues de cada prueba."""
     yield
     session = TestingSession()
-    session.execute(text("TRUNCATE users RESTART IDENTITY"))
+    session.execute(text("TRUNCATE articles, users RESTART IDENTITY"))
     session.commit()
     session.close()
 

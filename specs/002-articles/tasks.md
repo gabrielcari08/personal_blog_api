@@ -133,9 +133,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `get_by_id`, `list_all_desc` (`ORDER BY created_at DESC, id DESC`), `save` (never writes `created_at`, reads back id + time), `update` (only title/text, raises not-found when missing), `delete` (hard removal, raises not-found when missing).
-- [ ] Map entity to/from ORM row preserving `user_id` and `created_at` untouched on update.
-- [ ] Test round-trip persists title/text/owner and returns server-assigned id plus timezone-aware time; FK violation on unknown `user_id` fails; ordering returns newest first across mixed timestamps with id tiebreak; update changes only title/text; delete removes so fetch is empty.
+- [x] Implement `get_by_id`, `list_all_desc` (`ORDER BY created_at DESC, id DESC`), `save` (never writes `created_at`, reads back id + time), `update` (only title/text, raises not-found when missing), `delete` (hard removal, raises not-found when missing).
+- [x] Map entity to/from ORM row preserving `user_id` and `created_at` untouched on update.
+- [x] Test round-trip persists title/text/owner and returns server-assigned id plus timezone-aware time; FK violation on unknown `user_id` fails; ordering returns newest first across mixed timestamps with id tiebreak; update changes only title/text; delete removes so fetch is empty.
 
 **Done when:**
 
