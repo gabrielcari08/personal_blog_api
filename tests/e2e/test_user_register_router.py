@@ -15,7 +15,7 @@ from app.infrastructure.db.base import Base
 # Base de datos de pruebas (nunca la de desarrollo).
 TEST_URL = os.getenv(
     "TEST_DATABASE_URL",
-    "postgresql://postgres:postgres@localhost:5432/blog_test",
+    "postgresql+psycopg2://postgres:postgres@localhost:5432/blog_test",
 )
 
 engine = create_engine(TEST_URL)

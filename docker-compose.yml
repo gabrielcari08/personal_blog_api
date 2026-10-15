@@ -52,7 +52,7 @@ services:
       - .env
 
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-app_db}
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-app_db}
       SECRET_KEY: ${SECRET_KEY:-dev-secret-key-change-in-prod}
 
     depends_on:

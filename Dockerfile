@@ -3,8 +3,8 @@
 # Preparar y compliar las dependencias
 # ==============================================================================
 
-# Se crea la imagen basade en Python 3.13 Slim. 
-FROM python:3.13-slim AS builder
+# Se crea la imagen basade en Python 3.12 Slim. 
+FROM python:3.12-slim AS builder
 
 # Variables de entorno
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -15,10 +15,7 @@ WORKDIR /app
 
 # Herramientas necesarias para compilar algunas dependencias de Python
 # y librerías de PostgreSQL.
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends gcc libpq-dev && rm -rf /var/lib/apt/lists/*
 
 # Copiar e instalar las dependencias.
 COPY requirements.txt .
@@ -31,7 +28,7 @@ RUN pip install --prefix=/install --no-cache-dir -r requirements.txt
 # ==============================================================================
 
 # Se crea otra imagen desde 0. 
-FROM python:3.13-slim AS runner
+FROM python:3.12-slim AS runner
 
 # Variables de entorno.
 ENV PYTHONDONTWRITEBYTECODE=1 \

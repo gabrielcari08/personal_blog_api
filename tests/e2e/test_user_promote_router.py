@@ -22,7 +22,7 @@ from app.infrastructure.services.jwt_token_service import JwtTokenService
 # Base de datos de pruebas (nunca la de desarrollo).
 TEST_URL = os.getenv(
     "TEST_DATABASE_URL",
-    "postgresql://postgres:postgres@localhost:5432/blog_test",
+    "postgresql+psycopg2://postgres:postgres@localhost:5432/blog_test",
 )
 # Secreto solo para las pruebas.
 TEST_SECRET = "test-secret-key"

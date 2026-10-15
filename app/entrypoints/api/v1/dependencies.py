@@ -24,7 +24,7 @@ from app.infrastructure.services.jwt_token_service import JwtTokenService
 
 # URL de base de datos (en contenedor la provee compose; local usa el respaldo).
 DATABASE_URL = os.getenv(
-    "DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/blog_db"
+    "DATABASE_URL", "postgresql+psycopg2://postgres:postgres@localhost:5432/blog_db"
 )
 
 engine = create_engine(DATABASE_URL)
