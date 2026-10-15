@@ -111,10 +111,10 @@ Conventions:
 
 **Steps:**
 
-- [ ] Define `articles` table with `id` PK, `title VARCHAR(20) NOT NULL` + length CHECK 8-20, `user_id INTEGER NOT NULL` FK to `users(id)` ON DELETE CASCADE, `text TEXT NOT NULL` + length CHECK 10-300, `created_at TIMESTAMPTZ NOT NULL` server default `now()` (same handling as users).
-- [ ] Add indexes for `created_at DESC, id DESC` ordering and for `user_id` ownership lookups.
-- [ ] Confirm no `updated_at`, status, draft, or soft-delete columns are added and `users` table is untouched.
-- [ ] Generate and review the Alembic revision (create table + FK + CHECKs + indexes).
+- [x] Define `articles` table with `id` PK, `title VARCHAR(20) NOT NULL` + length CHECK 8-20, `user_id INTEGER NOT NULL` FK to `users(id)` ON DELETE CASCADE, `text TEXT NOT NULL` + length CHECK 10-300, `created_at TIMESTAMPTZ NOT NULL` server default `now()` (same handling as users).
+- [x] Add indexes for `created_at DESC, id DESC` ordering and for `user_id` ownership lookups.
+- [x] Confirm no `updated_at`, status, draft, or soft-delete columns are added and `users` table is untouched.
+- [x] Generate and review the Alembic revision (create table + FK + CHECKs + indexes).
 
 **Done when:**
 
