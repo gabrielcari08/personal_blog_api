@@ -154,9 +154,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `CreateArticle.execute(caller, input)` constructing the entity with `user_id = caller.id` (no primitive length checks here; entity enforces them).
-- [ ] Ensure no client author or timestamp is trusted; returned output carries server `user_id` and time.
-- [ ] Test success assigns caller as owner; invalid title/text raise exact spec messages with nothing saved; ADMIN caller is owned like any author.
+- [x] Implement `CreateArticle.execute(caller, input)` constructing the entity with `user_id = caller.id` (no primitive length checks here; entity enforces them).
+- [x] Ensure no client author or timestamp is trusted; returned output carries server `user_id` and time.
+- [x] Test success assigns caller as owner; invalid title/text raise exact spec messages with nothing saved; ADMIN caller is owned like any author.
 
 **Done when:**
 
@@ -176,9 +176,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `ListArticles.execute()` delegating to `list_all_desc` with no auth context and no pagination params.
-- [ ] Implement `GetArticle.execute(article_id)` raising `ArticleNotFoundException` when missing.
-- [ ] Test list returns fixtures ordered most-recent-first (including equal-timestamp id tiebreak); get returns the row; get of missing id raises not-found.
+- [x] Implement `ListArticles.execute()` delegating to `list_all_desc` with no auth context and no pagination params.
+- [x] Implement `GetArticle.execute(article_id)` raising `ArticleNotFoundException` when missing.
+- [x] Test list returns fixtures ordered most-recent-first (including equal-timestamp id tiebreak); get returns the row; get of missing id raises not-found.
 
 **Done when:**
 
@@ -197,8 +197,8 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `UpdateArticle.execute(caller, article_id, input)` requiring existing target (not-found), then owner (`caller.id == target.user_id`) OR `caller.role == ADMIN` else forbidden; rebuild entity preserving `id`, `user_id`, `created_at` and replacing only title/text.
-- [ ] Test owner update succeeds with history preserved; ADMIN update of another's article succeeds with originals preserved; non-owner USER raises forbidden with nothing changed; missing id raises not-found; invalid new title/text raise exact messages with originals preserved.
+- [x] Implement `UpdateArticle.execute(caller, article_id, input)` requiring existing target (not-found), then owner (`caller.id == target.user_id`) OR `caller.role == ADMIN` else forbidden; rebuild entity preserving `id`, `user_id`, `created_at` and replacing only title/text.
+- [x] Test owner update succeeds with history preserved; ADMIN update of another's article succeeds with originals preserved; non-owner USER raises forbidden with nothing changed; missing id raises not-found; invalid new title/text raise exact messages with originals preserved.
 
 **Done when:**
 
@@ -217,8 +217,8 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `DeleteArticle.execute(caller, article_id)` with same existence and owner-or-admin rules as update, then hard-deletes with no confirmation step.
-- [ ] Test owner delete removes; ADMIN delete of another's removes; non-owner USER raises forbidden with nothing removed; missing id raises not-found.
+- [x] Implement `DeleteArticle.execute(caller, article_id)` with same existence and owner-or-admin rules as update, then hard-deletes with no confirmation step.
+- [x] Test owner delete removes; ADMIN delete of another's removes; non-owner USER raises forbidden with nothing removed; missing id raises not-found.
 
 **Done when:**
 
