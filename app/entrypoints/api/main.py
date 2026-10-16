@@ -5,6 +5,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from app.domain.exceptions.article_exceptions import (
+    ArticleForbiddenException,
     ArticleNotFoundException,
     ArticleValidationException,
 )
@@ -103,6 +104,15 @@ def article_not_found_handler(request: Request, error: ArticleNotFoundException)
     return JSONResponse(
         status_code=status.HTTP_404_NOT_FOUND,
         content={'detail': str(error), 'code': 'article_not_found'},
+    )
+
+
+@app.exception_handler(ArticleForbiddenException)
+def article_forbidden_handler(request: Request, error: ArticleForbiddenException) -> JSONResponse:
+    """Mapea el intento directo de un no-autor a 403."""
+    return JSONResponse(
+        status_code=status.HTTP_403_FORBIDDEN,
+        content={'detail': str(error), 'code': 'forbidden'},
     )
 
 

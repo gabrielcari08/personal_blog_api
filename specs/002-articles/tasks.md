@@ -281,10 +281,10 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `PUT /api/v1/articles/{id}` behind `get_current_user` returning `200` with history preserved; `403` for non-owner USER (direct bypass), `404` for missing, `400` exact validation messages.
-- [ ] Implement `DELETE /api/v1/articles/{id}` behind `get_current_user` returning `204` empty; `403` for non-owner USER, `404` for missing.
-- [ ] Map `ArticleForbiddenException` to `403` with stable code envelope.
-- [ ] Test matrix: owner PUT `200` with `user_id`/`created_at` unchanged; non-owner USER PUT/DELETE yield `403` with nothing changed (proving backend enforcement beyond hidden buttons); ADMIN PUT/DELETE on another's succeed; PUT invalid values yield `400` exact messages with originals preserved; PUT/DELETE missing id yield `404`; DELETE success yields `204` and item vanishes from list and single fetch 404s.
+- [x] Implement `PUT /api/v1/articles/{id}` behind `get_current_user` returning `200` with history preserved; `403` for non-owner USER (direct bypass), `404` for missing, `400` exact validation messages.
+- [x] Implement `DELETE /api/v1/articles/{id}` behind `get_current_user` returning `204` empty; `403` for non-owner USER, `404` for missing.
+- [x] Map `ArticleForbiddenException` to `403` with stable code envelope.
+- [x] Test matrix: owner PUT `200` with `user_id`/`created_at` unchanged; non-owner USER PUT/DELETE yield `403` with nothing changed (proving backend enforcement beyond hidden buttons); ADMIN PUT/DELETE on another's succeed; PUT invalid values yield `400` exact messages with originals preserved; PUT/DELETE missing id yield `404`; DELETE success yields `204` and item vanishes from list and single fetch 404s.
 
 **Done when:**
 
