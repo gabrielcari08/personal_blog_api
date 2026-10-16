@@ -236,9 +236,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Add `get_article_repository` building the Postgres repository from the request session.
-- [ ] Add five factories: `get_create_article`, `get_list_articles`, `get_get_article`, `get_update_article`, `get_delete_article` (each receives only the repository).
-- [ ] Reuse existing `get_current_user` for mutation auth; no new token logic; routers will receive only use cases and guards.
+- [x] Add `get_article_repository` building the Postgres repository from the request session.
+- [x] Add five factories: `get_create_article`, `get_list_articles`, `get_get_article`, `get_update_article`, `get_delete_article` (each receives only the repository).
+- [x] Reuse existing `get_current_user` for mutation auth; no new token logic; routers will receive only use cases and guards.
 
 **Done when:**
 

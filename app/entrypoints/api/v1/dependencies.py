@@ -9,13 +9,22 @@ from jose import JWTError, jwt
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
+from app.application.use_cases.article.create_article import CreateArticle
+from app.application.use_cases.article.delete_article import DeleteArticle
+from app.application.use_cases.article.get_article import GetArticle
+from app.application.use_cases.article.list_articles import ListArticles
+from app.application.use_cases.article.update_article import UpdateArticle
 from app.application.use_cases.user.login_user import LoginUser
 from app.application.use_cases.user.promote_user import PromoteUser
 from app.application.use_cases.user.register_user import RegisterUser
 from app.domain.entities.user import User
+from app.domain.repositories.article_repository import ArticleRepository
 from app.domain.repositories.user_repository import UserRepository
 from app.domain.services.password_hasher_service import PasswordHasher
 from app.domain.services.token_service import TokenService
+from app.infrastructure.repositories.postgres_article_repository import (
+    PostgresArticleRepository,
+)
 from app.infrastructure.repositories.postgres_user_repository import (
     PostgresUserRepository,
 )
@@ -79,6 +88,46 @@ def get_promote_user(
 ) -> PromoteUser:
     """Construye el caso de uso de promocion."""
     return PromoteUser(repository=repository)
+
+
+def get_article_repository(session: Session = Depends(get_db)) -> ArticleRepository:
+    """Construye el repositorio Postgres de articulos con la sesion de la peticion."""
+    return PostgresArticleRepository(session)
+
+
+def get_create_article(
+    repository: ArticleRepository = Depends(get_article_repository),
+) -> CreateArticle:
+    """Construye el caso de uso de creacion de articulos."""
+    return CreateArticle(repository=repository)
+
+
+def get_list_articles(
+    repository: ArticleRepository = Depends(get_article_repository),
+) -> ListArticles:
+    """Construye el caso de uso de listado publico."""
+    return ListArticles(repository=repository)
+
+
+def get_get_article(
+    repository: ArticleRepository = Depends(get_article_repository),
+) -> GetArticle:
+    """Construye el caso de uso de lectura individual."""
+    return GetArticle(repository=repository)
+
+
+def get_update_article(
+    repository: ArticleRepository = Depends(get_article_repository),
+) -> UpdateArticle:
+    """Construye el caso de uso de edicion de articulos."""
+    return UpdateArticle(repository=repository)
+
+
+def get_delete_article(
+    repository: ArticleRepository = Depends(get_article_repository),
+) -> DeleteArticle:
+    """Construye el caso de uso de eliminacion de articulos."""
+    return DeleteArticle(repository=repository)
 
 
 def get_current_user(
