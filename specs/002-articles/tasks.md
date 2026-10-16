@@ -259,9 +259,9 @@ Conventions:
 **Steps:**
 
 - [ ] Implement `GET /api/v1/articles` (public, ordered most-recent-first, no auth) and `GET /api/v1/articles/{id}` (public, 404 when missing).
-- [ ] Implement `POST /api/v1/articles` behind `get_current_user` returning `201` with `ArticleOutput` (server owner + time).
-- [ ] Map `ArticleValidationException` to `400` preserving exact messages, `ArticleNotFoundException` to `404`; keep `RequestValidationError` -> `400` behavior.
-- [ ] Test matrix: public list succeeds with no token in newest-first order; public single succeeds with no token and includes `user_id`; POST without token yields `401` creating nothing; POST valid yields `201` with correct owner; POST short/long title yields `400` exact title message; POST empty text yields `400` `text is required`; POST 9/301-char text yields `400` exact range message; extra `user_id` in body has no effect.
+- [x] Implement `POST /api/v1/articles` behind `get_current_user` returning `201` with `ArticleOutput` (server owner + time).
+- [x] Map `ArticleValidationException` to `400` preserving exact messages, `ArticleNotFoundException` to `404`; keep `RequestValidationError` -> `400` behavior.
+- [x] Test matrix: public list succeeds with no token in newest-first order; public single succeeds with no token and includes `user_id`; POST without token yields `401` creating nothing; POST valid yields `201` with correct owner; POST short/long title yields `400` exact title message; POST empty text yields `400` `text is required`; POST 9/301-char text yields `400` exact range message; extra `user_id` in body has no effect.
 
 **Done when:**
 

@@ -4,6 +4,10 @@ from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
+from app.domain.exceptions.article_exceptions import (
+    ArticleNotFoundException,
+    ArticleValidationException,
+)
 from app.domain.exceptions.user_exceptions import (
     DuplicateEmailException,
     DuplicateUsernameException,
@@ -12,11 +16,13 @@ from app.domain.exceptions.user_exceptions import (
     UserNotFoundException,
     UserValidationException,
 )
+from app.entrypoints.api.v1.routes.article_router import router as article_router
 from app.entrypoints.api.v1.routes.user_router import router as user_router
 
 app = FastAPI(title='Personal Blog API', description='API for the Personal Blog')
 
 app.include_router(user_router, prefix='/api/v1')
+app.include_router(article_router, prefix='/api/v1')
 
 
 @app.exception_handler(RequestValidationError)
@@ -79,6 +85,24 @@ def user_not_found_handler(request: Request, error: UserNotFoundException) -> JS
     return JSONResponse(
         status_code=status.HTTP_404_NOT_FOUND,
         content={'detail': str(error), 'code': 'user_not_found'},
+    )
+
+
+@app.exception_handler(ArticleValidationException)
+def article_validation_error_handler(request: Request, error: ArticleValidationException) -> JSONResponse:
+    """Mapea violaciones de titulo o texto a 400 con el mensaje exacto."""
+    return JSONResponse(
+        status_code=status.HTTP_400_BAD_REQUEST,
+        content={'detail': str(error), 'code': 'validation_error'},
+    )
+
+
+@app.exception_handler(ArticleNotFoundException)
+def article_not_found_handler(request: Request, error: ArticleNotFoundException) -> JSONResponse:
+    """Mapea articulo inexistente a 404."""
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
+        content={'detail': str(error), 'code': 'article_not_found'},
     )
 
 
