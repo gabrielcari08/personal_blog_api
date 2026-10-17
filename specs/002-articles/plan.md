@@ -2,6 +2,8 @@
 
 This plan answers HOW the `spec.md` will be implemented. It respects Clean Architecture from `AGENT.md` and the current stack (FastAPI, SQLAlchemy, PostgreSQL, Pydantic). No implementation code is included here, only contracts, structures, and pseudocode.
 
+> **Backend layout note:** the backend lives in `backend/`. All `app/`, `tests/`, and `alembic/` paths in this document are relative to `backend/`, and every command (pytest, alembic, uvicorn) must be run from `backend/`.
+
 ## 1. Functional Requirements Mapping to Modules
 
 | Spec rule | Module responsible | Notes |
@@ -25,7 +27,7 @@ Validation split per `AGENT.md`: DTOs handle transport shape and delegate length
 
 ## 2. Folder and File Structure
 
-New files only under `app/` following `AGENT.md`. Existing `app/entrypoints/api/main.py` and `app/entrypoints/api/v1/dependencies.py` are extended, not rewritten. Existing user modules are untouched.
+New files only under `backend/app/` following `AGENT.md`. Existing `backend/app/entrypoints/api/main.py` and `backend/app/entrypoints/api/v1/dependencies.py` are extended, not rewritten. Existing user modules are untouched.
 
 ```text
 app/
@@ -63,7 +65,7 @@ app/
 
 Migration (Alembic): single new revision creating the `articles` table with columns, FK, checks, and indexes described in Section 3. No change to the `users` table.
 
-Tests mirror the structure under `tests/`:
+Tests mirror the structure under `backend/tests/`:
 
 ```text
 tests/

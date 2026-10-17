@@ -33,7 +33,7 @@ services:
   # ============================================================================
   api:
     build:
-      context: .
+      context: ./backend
       target: runner
 
     restart: unless-stopped
@@ -44,12 +44,12 @@ services:
       - "8000:8000"
 
     volumes:
-      - ./app:/app/app
-      - ./tests:/app/tests
+      - ./backend/app:/app/app
+      - ./backend/tests:/app/tests
       - ./specs:/app/specs
 
     env_file:
-      - .env
+      - ./backend/.env
 
     environment:
       DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-app_db}

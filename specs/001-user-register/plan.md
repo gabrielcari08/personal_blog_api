@@ -2,6 +2,8 @@
 
 This plan answers HOW the `spec.md` will be implemented. It respects Clean Architecture from `AGENT.md` and the current stack (FastAPI, SQLAlchemy, PostgreSQL, Pydantic, Passlib-Bcrypt, python-jose). No implementation code is included here, only contracts, structures, and pseudocode.
 
+> **Backend layout note:** the backend lives in `backend/`. All `app/`, `tests/`, and `alembic/` paths in this document are relative to `backend/`, and every command (pytest, alembic, uvicorn) must be run from `backend/`.
+
 ## 1. Functional Requirements Mapping to Modules
 
 | Spec rule | Module responsible | Notes |
@@ -26,7 +28,7 @@ This plan answers HOW the `spec.md` will be implemented. It respects Clean Archi
 
 ## 2. Folder and File Structure
 
-New files only under `app/` following `AGENT.md`. Existing `app/entrypoints/api/v1/main.py` is kept and extended by router registration.
+New files only under `backend/app/` following `AGENT.md`. Existing `backend/app/entrypoints/api/v1/main.py` is kept and extended by router registration.
 
 ```text
 app/
@@ -69,7 +71,7 @@ app/
 
 Migration (Alembic): single revision creating `users` table with constraints described in Section 3, including the role column. If the table already exists from an earlier revision, a second revision adds the role column with backfill to `USER`.
 
-Tests mirror the structure under `tests/`:
+Tests mirror the structure under `backend/tests/`:
 
 ```text
 tests/

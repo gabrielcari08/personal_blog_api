@@ -1,7 +1,7 @@
 """Caso de uso para registrar usuarios (siempre con rol USER)."""
 
 from app.application.dtos.user_dtos import RegisterInput, UserOutput
-from app.domain.entities.user import User, validate_plain_password
+from app.domain.entities.user import User
 from app.domain.exceptions.user_exceptions import (
     DuplicateEmailException,
     DuplicateUsernameException

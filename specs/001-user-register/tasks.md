@@ -2,6 +2,8 @@
 
 Ordered strictly by technical dependencies. Each task is sized for 20-30 minutes. Complete tasks in order; do not skip ahead because later tasks depend on earlier contracts.
 
+> **Backend layout note:** the backend lives in `backend/`. All `app/`, `tests/`, and `alembic/` paths below are relative to `backend/`, and every command (pytest, alembic, uvicorn) must be run from `backend/`.
+
 Conventions:
 
 - `Covers` = spec business rules and plan sections implemented by the task.

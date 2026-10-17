@@ -21,11 +21,14 @@
 
 - We strictly follow **Clean Architecture**.
 
-app/
+- The backend lives in `backend/`; all backend commands (pytest, alembic, uvicorn) MUST run from the `backend/` directory.
+
+backend/
+└── app/
 ├── domain/  
-├── application/  
-├── infrastructure/  
-└── entrypoints/
+ ├── application/  
+ ├── infrastructure/  
+ └── entrypoints/
 
 - **Folders Explication**:
   - **domain/**: Pure business rules (zero database, frameworks or external libreries).
@@ -35,7 +38,7 @@ app/
 
 ### **Layer Rules**:
 
-#### 1. Domain Layer (`app/domain/`)
+#### 1. Domain Layer (`backend/app/domain/`)
 
 The core of the application. It MUST NOT import any external frameworks or libraries (No FastAPI, SQLAlchemy, Passlib, Pydantic, etc.).
 
@@ -44,7 +47,7 @@ The core of the application. It MUST NOT import any external frameworks or libra
 - **`services/[service_name]_service.py`**: Abstract Base Classes (`ABC`) for domain tool interfaces (e.g., `PasswordHasher`, `TokenService`, `EmailSender`).
 - **`exceptions/[entity_name]_exceptions.py`**: Custom domain exceptions for business error states (e.g., `UserNotFoundException`, `DuplicateEmailException`).
 
-#### 2. Application Layer (`app/application/`)
+#### 2. Application Layer (`backend/app/application/`)
 
 Orchestrates application workflow and business process execution. Coordinates domain entities, repositories, and domain services to fulfill specific user actions.
 
@@ -57,7 +60,7 @@ Orchestrates application workflow and business process execution. Coordinates do
   - **Service usage:** Use abstract domain service interfaces (from `app.domain.services`). Never define inline protocols or concrete implementations here.
 - **`dtos/[entity_name]_dtos.py`**: Data Transfer Objects (Pydantic models) defining input and output data structures for the use cases.
 
-#### 3. Infrastructure Layer (`app/infrastructure/`)
+#### 3. Infrastructure Layer (`backend/app/infrastructure/`)
 
 Contains all technical implementations, database models, and external tool integrations.
 
@@ -65,12 +68,40 @@ Contains all technical implementations, database models, and external tool integ
 - **`repositories/postgres_[entity_name]_repository.py`**: Concrete implementation of the abstract repository defined in `domain/repositories/`. Maps ORM models to/from Domain Entities.
 - **`services/`**: Concrete implementations of abstract domain services using third-party libraries (e.g., `passlib` for `PasswordHasher`, `PyJWT` for `TokenService`).
 
-#### 4. Entrypoints Layer (`app/entrypoints/`)
+#### 4. Entrypoints Layer (`backend/app/entrypoints/`)
 
 Exposes the system functionality through HTTP APIs while remaining completely decoupled from core logic.
 
 - **`api/v1/routes/[entity_name]_router.py`**: FastAPI routers. Maps HTTP endpoints to Application Use Cases. Handles HTTP status codes and maps Domain Exceptions to HTTP Error responses.
 - **`api/v1/dependencies.py`**: FastAPI dependency injection setup (`Depends`). Instantiates infrastructure classes and injects them into Use Cases.
+
+#### 5. Presentation Layer (`frontend/src/components/` & `frontend/src/pages/`)
+
+Handles visual rendering and direct user interaction. MUST NOT execute direct HTTP calls or perform complex data transformations.
+
+- **`components/ui/`**: Atomic, business-agnostic UI elements (e.g., buttons, inputs, modals, spinners) styled with Tailwind CSS.
+- **`components/features/[entity_name]/`**: Entity-specific visual components (e.g., `ArticleCard.jsx`, `LoginForm.jsx`). Delegates state and actions to custom hooks.
+- **`pages/`**: Full route views (e.g., `HomePage.jsx`, `LoginPage.jsx`). Assembles feature components and layout structures.
+
+#### 6. Application Logic & State Layer (`frontend/src/hooks/` & `frontend/src/context/`)
+
+Orchestrates UI state, reactivity, and global authentication/session context.
+
+- **`hooks/use_[entity_name].js`**: Custom hooks encapsulating API service integration, loading/error states, and local UI reactivity.
+- **`context/`**: React Context providers managing global application state (e.g., `AuthContext.jsx` for JWT lifecycle and active user credentials).
+
+#### 7. Service & Infrastructure Layer (`frontend/src/services/` & `frontend/src/api/`)
+
+Handles remote communication with the FastAPI backend. Decouples UI components from specific HTTP clients and endpoint configurations.
+
+- **`api/client.js`**: Centralized HTTP client instance (Axios / Fetch wrapper). Configures base URL (`/api/v1`), default headers, and JWT request/response interceptors.
+- **`services/[entity_name]_service.js`**: Pure functions executing HTTP requests targeting backend routes (e.g., `authService.login()`, `articleService.getAll()`).
+
+#### 8. Domain & Utility Layer (`frontend/src/utils/` & `frontend/src/types/`)
+
+Pure helper functions, data mapping utilities, and shared constants.
+
+- **`utils/`**: Helper functions (e.g., ISO 8601 UTC date formatting to local browser timezone, `localStorage` wrappers).
 
 ## Workflow (Spec-Driven Development)
 
