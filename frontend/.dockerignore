@@ -1,0 +1,13 @@
+# Dependencias y artefactos generados localmente.
+node_modules
+dist
+dist-ssr
+
+# Variables de entorno locales (no se copian a la imagen).
+.env
+.env.*
+!.env.example
+
+# Metadatos de control de versiones.
+.git
+.gitignore

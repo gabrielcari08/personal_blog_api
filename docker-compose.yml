@@ -59,5 +59,34 @@ services:
       db:
         condition: service_healthy
 
+  # ============================================================================
+  # Frontend (Vite + React, modo desarrollo con hot reload)
+  # ============================================================================
+  frontend:
+    build:
+      context: ./frontend
+
+    restart: unless-stopped
+
+    command: npm run dev -- --host 0.0.0.0
+
+    ports:
+      - "5173:5173"
+
+    volumes:
+      # Código fuente en vivo para recarga en caliente.
+      - ./frontend:/app
+      # Volumen anónimo: evita que el node_modules del host pise el del contenedor.
+      - /app/node_modules
+
+    environment:
+      # Dentro de la red de compose el backend responde en el servicio "api".
+      VITE_API_PROXY_TARGET: http://api:8000
+      # El watcher no detecta cambios del bind mount de Windows; se usa polling.
+      VITE_USE_POLLING: "true"
+
+    depends_on:
+      - api
+
 volumes:
   postgres_data:
