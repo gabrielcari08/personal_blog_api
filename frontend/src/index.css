@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/*
+  Personal Blog — Tailwind v4 CSS-first design tokens.
+  The interface is dark-theme only (BR-15): there is no light palette and no
+  theme toggle by design. Colors use OKLCH for perceptually even color.
+*/
+@theme {
+  --color-background: oklch(14.5% 0.025 264);
+  --color-foreground: oklch(98% 0.01 264);
+
+  --color-card: oklch(17.5% 0.025 264);
+  --color-card-foreground: oklch(98% 0.01 264);
+
+  --color-primary: oklch(98% 0.01 264);
+  --color-primary-foreground: oklch(14.5% 0.025 264);
+
+  --color-secondary: oklch(22% 0.02 264);
+  --color-secondary-foreground: oklch(98% 0.01 264);
+
+  --color-muted: oklch(22% 0.02 264);
+  --color-muted-foreground: oklch(65% 0.02 264);
+
+  --color-accent: oklch(26% 0.03 264);
+  --color-accent-foreground: oklch(98% 0.01 264);
+
+  --color-destructive: oklch(58% 0.2 27);
+  --color-destructive-foreground: oklch(98% 0.01 264);
+
+  --color-border: oklch(26% 0.02 264);
+  --color-input: oklch(22% 0.02 264);
+  --color-ring: oklch(83% 0.02 264);
+  --color-ring-offset: oklch(14.5% 0.025 264);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  --animate-fade-in: fade-in 0.2s ease-out;
+  --animate-fade-out: fade-out 0.2s ease-in;
+  --animate-slide-in: slide-in 0.3s ease-out;
+  --animate-slide-out: slide-out 0.3s ease-in;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateY(-0.5rem);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-out {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-0.5rem);
+      opacity: 0;
+    }
+  }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}

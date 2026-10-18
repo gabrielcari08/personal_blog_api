@@ -22,19 +22,20 @@ Conventions:
 - Create `frontend/package.json`
 - Create `frontend/vite.config.js`
 - Create `frontend/index.html`
-- Create `frontend/tailwind.config.js`
-- Create `frontend/postcss.config.js`
 - Create `frontend/.env.example`
+- Create `frontend/.gitignore`
 - Create `frontend/src/main.jsx`
 - Create `frontend/src/App.jsx`
-- Create `frontend/src/index.css`
+- Create `frontend/src/index.css` (Tailwind v4 CSS-first tokens via `@theme`)
+
+> **Tailwind v4 note:** the design system uses Tailwind CSS v4 (CSS-first). Colors, radii, and animations are declared in `src/index.css` with `@theme`, so no `tailwind.config.js` and no `postcss.config.js` are created; the `@tailwindcss/vite` plugin handles the build.
 
 **Steps:**
 
-- [ ] Scaffold a React SPA with Vite using plain JavaScript (no TypeScript).
-- [ ] Add Tailwind CSS with a single dark palette and no light tokens or theme toggle (BR-15).
-- [ ] Configure the dev server to proxy `/api` to the backend so `VITE_API_BASE_URL=/api/v1` resolves without CORS.
-- [ ] Mount `App` from `main.jsx` and import `index.css` with mobile-first base styles (BR-16).
+- [x] Scaffold a React SPA with Vite using plain JavaScript (no TypeScript).
+- [x] Add Tailwind CSS with a single dark palette and no light tokens or theme toggle (BR-15).
+- [x] Configure the dev server to proxy `/api` to the backend so `VITE_API_BASE_URL=/api/v1` resolves without CORS.
+- [x] Mount `App` from `main.jsx` and import `index.css` with mobile-first base styles (BR-16).
 
 **Done when:**
 
