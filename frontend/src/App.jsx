@@ -1,5 +1,6 @@
-// Application shell. Routing, providers, and pages are wired in later tasks;
-// this placeholder confirms the dark theme tokens render correctly.
+// Shell de la aplicación. El enrutado, los providers y las páginas se conectan
+// en tareas posteriores; este placeholder confirma que los tokens del tema
+// oscuro se renderizan correctamente.
 export default function App() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-4">

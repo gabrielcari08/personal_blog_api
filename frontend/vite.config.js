@@ -2,9 +2,9 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
-// Vite config for the Personal Blog SPA.
-// The dev server proxies /api to the FastAPI backend so the client can use the
-// relative base URL VITE_API_BASE_URL=/api/v1 without CORS concerns.
+// Configuración de Vite para la SPA de Personal Blog.
+// El servidor de desarrollo redirige /api al backend FastAPI para que el
+// cliente use la URL relativa VITE_API_BASE_URL=/api/v1 sin problemas de CORS.
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   // Dentro de Docker el backend responde en el servicio "api"; en el host, en localhost.

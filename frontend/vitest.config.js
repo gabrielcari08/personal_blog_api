@@ -1,8 +1,8 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 
-// Vitest configuration. jsdom + React Testing Library, with the shared setup
-// file that wires jest-dom matchers and the MSW server.
+// Configuración de Vitest: jsdom + React Testing Library, con el archivo de
+// setup compartido que integra los matchers de jest-dom y el servidor MSW.
 export default defineConfig({
   plugins: [react()],
   test: {

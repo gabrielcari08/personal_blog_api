@@ -82,9 +82,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Define JSDoc typedefs for `User`, `Article`, `AuthSession`, `ApiError`, `RegisterFormState`, `LoginFormState`, `ArticleFormState` (no runtime code).
-- [ ] Document the role literal union (`USER` | `ADMIN`) and the `ArticleOutput` fields (`id`, `title`, `text`, `user_id`, `created_at`).
-- [ ] Document that the login response exposes only `access_token` and `token_type` (plan §3.6).
+- [x] Define JSDoc typedefs for `User`, `Article`, `AuthSession`, `ApiError`, `RegisterFormState`, `LoginFormState`, `ArticleFormState` (no runtime code).
+- [x] Document the role literal union (`USER` | `ADMIN`) and the `ArticleOutput` fields (`id`, `title`, `text`, `user_id`, `created_at`).
+- [x] Document that the login response exposes only `access_token` and `token_type` (plan §3.6).
 
 **Done when:**
 

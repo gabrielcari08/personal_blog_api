@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 /*
-  Personal Blog — Tailwind v4 CSS-first design tokens.
-  The interface is dark-theme only (BR-15): there is no light palette and no
-  theme toggle by design. Colors use OKLCH for perceptually even color.
+  Personal Blog — tokens de diseño de Tailwind v4 con configuración CSS-first.
+  La interfaz es solo tema oscuro (BR-15): no existe paleta clara ni selector
+  de tema por diseño. Los colores usan OKLCH para una percepción uniforme.
 */
 @theme {
   --color-background: oklch(14.5% 0.025 264);

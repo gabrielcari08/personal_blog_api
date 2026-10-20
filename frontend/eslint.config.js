@@ -4,13 +4,13 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import prettier from "eslint-config-prettier";
 
-// Flat ESLint config for the Personal Blog frontend.
+// Configuración flat de ESLint para el frontend de Personal Blog.
 export default [
   { ignores: ["dist", "node_modules"] },
 
   js.configs.recommended,
 
-  // Browser source (React components, hooks, services, utils).
+  // Código de navegador (componentes React, hooks, servicios, utilidades).
   {
     files: ["src/**/*.{js,jsx}"],
     languageOptions: {
@@ -30,7 +30,7 @@ export default [
     },
   },
 
-  // Node-side files: Vite/Vitest config.
+  // Archivos del lado de Node: configuración de Vite/Vitest.
   {
     files: ["*.config.js"],
     languageOptions: {
@@ -40,7 +40,7 @@ export default [
     },
   },
 
-  // Tests: Node + browser + Vitest/MWS globals.
+  // Tests: globals de Node + navegador + Vitest/MWS.
   {
     files: ["tests/**/*.{js,jsx}"],
     languageOptions: {
@@ -63,6 +63,6 @@ export default [
     },
   },
 
-  // Disable stylistic rules that conflict with Prettier.
+  // Desactiva las reglas de estilo que entran en conflicto con Prettier.
   prettier,
 ];
