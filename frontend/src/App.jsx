@@ -7,9 +7,7 @@ export default function App() {
         <h1 className="text-2xl font-semibold tracking-tight text-card-foreground">
           Personal Blog
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Frontend scaffold running.
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">Frontend scaffold running.</p>
       </div>
     </main>
   );

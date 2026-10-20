@@ -51,18 +51,20 @@ Conventions:
 
 - Create `frontend/eslint.config.js`
 - Create `frontend/.prettierrc`
+- Create `frontend/.prettierignore`
 - Create `frontend/vitest.config.js`
 - Create `frontend/tests/setup.js`
 - Create `frontend/tests/msw/server.js`
+- Create `frontend/tests/msw/handlers.js` (shared handler registry populated in T32-T34)
 - Create `frontend/tests/unit/smoke.test.js`
 
 **Steps:**
 
-- [ ] Configure ESLint and Prettier with zero-tolerance defaults for the frontend source.
-- [ ] Configure Vitest with the `jsdom` environment and React Testing Library, loading `tests/setup.js`.
-- [ ] Set up an MSW server factory for shared mock handlers used by later tests.
-- [ ] Add npm scripts: `dev`, `build`, `lint`, `format`, `test`.
-- [ ] Add a minimal smoke test so the runner is exercised.
+- [x] Configure ESLint and Prettier with zero-tolerance defaults for the frontend source.
+- [x] Configure Vitest with the `jsdom` environment and React Testing Library, loading `tests/setup.js`.
+- [x] Set up an MSW server factory for shared mock handlers used by later tests.
+- [x] Add npm scripts: `dev`, `build`, `lint`, `format`, `test` (plus `format:check`).
+- [x] Add a minimal smoke test so the runner is exercised.
 
 **Done when:**
 
