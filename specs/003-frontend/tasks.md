@@ -145,10 +145,10 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `validate_register` for username 8-20 with no whitespace, valid email shape, password 8-20 (raw, not trimmed).
-- [ ] Implement `validate_login` for required identifier and password only.
-- [ ] Implement `validate_article` with raw lengths: title 8-20, text required, text 10-300, using the exact strings `title must be 8-20 characters`, `text must be 10-300 characters`, `text is required`.
-- [ ] Test boundaries 7/8/20/21 for username, password, and title; whitespace variants (`my user01`, ` user01AB`, `user01AB `); empty text; text 9/10/300/301; emojis and spaces counted as one without trimming.
+- [x] Implement `validate_register` for username 8-20 with no whitespace, valid email shape, password 8-20 (raw, not trimmed).
+- [x] Implement `validate_login` for required identifier and password only.
+- [x] Implement `validate_article` with raw lengths: title 8-20, text required, text 10-300, using the exact strings `title must be 8-20 characters`, `text must be 10-300 characters`, `text is required`.
+- [x] Test boundaries 7/8/20/21 for username, password, and title; whitespace variants (`my user01`, ` user01AB`, `user01AB `); empty text; text 9/10/300/301; emojis and spaces counted as one without trimming.
 
 **Done when:**
 
@@ -167,9 +167,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `format_created_at(iso_utc)` converting an ISO-8601 UTC string to a local-timezone display string.
-- [ ] Return an empty/safe string for invalid or missing input instead of throwing.
-- [ ] Test: a known UTC input renders without error; invalid input degrades gracefully.
+- [x] Implement `format_created_at(iso_utc)` converting an ISO-8601 UTC string to a local-timezone display string.
+- [x] Return an empty/safe string for invalid or missing input instead of throwing.
+- [x] Test: a known UTC input renders without error; invalid input degrades gracefully.
 
 **Done when:**
 
