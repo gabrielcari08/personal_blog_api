@@ -29,7 +29,8 @@ export function decode(token) {
     }
 
     return {
-      user_id: claims.user_id ?? null,
+      // El backend emite el id en `sub`; se admite `user_id` por compatibilidad.
+      user_id: claims.user_id ?? claims.sub ?? null,
       username: claims.username ?? null,
       role: claims.role ?? null,
       exp: claims.exp ?? null,

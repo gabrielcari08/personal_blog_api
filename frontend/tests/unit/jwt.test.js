@@ -19,20 +19,31 @@ describe("utils/jwt", () => {
     vi.useRealTimers();
   });
 
-  it("decodifica los cuatro claims de un token válido", () => {
+  it("decodifica los cuatro claims de un token válido (sub del backend)", () => {
     const token = make_token({
-      user_id: 42,
+      sub: "42",
       username: "user01AB",
       role: "ADMIN",
       exp: 2_000_000_000,
     });
 
     expect(decode(token)).toEqual({
-      user_id: 42,
+      user_id: "42",
       username: "user01AB",
       role: "ADMIN",
       exp: 2_000_000_000,
     });
+  });
+
+  it("admite el claim user_id cuando está presente", () => {
+    const token = make_token({
+      user_id: 42,
+      username: "user01AB",
+      role: "USER",
+      exp: 2_000_000_000,
+    });
+
+    expect(decode(token).user_id).toBe(42);
   });
 
   it("devuelve null para un token malformado o vacío", () => {

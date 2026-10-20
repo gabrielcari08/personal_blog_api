@@ -188,9 +188,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `is_admin(session)` returning true only when `session.role === "ADMIN"`.
-- [ ] Implement `can_manage_article(article, session)` returning true for ADMIN on any article, true for the owner USER, and false for a non-owner USER or no session.
-- [ ] Test all four combinations.
+- [x] Implement `is_admin(session)` returning true only when `session.role === "ADMIN"`.
+- [x] Implement `can_manage_article(article, session)` returning true for ADMIN on any article, true for the owner USER, and false for a non-owner USER or no session.
+- [x] Test all four combinations.
 
 **Done when:**
 
@@ -208,9 +208,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Define literal copy constants: `REGISTER_SUCCESS`, `SESSION_EXPIRED`, `ARTICLE_CREATED`, `ARTICLE_UPDATED`, `ARTICLE_DELETED`, `USER_PROMOTED`, `GENERIC_ERROR`, `FORBIDDEN`, `ARTICLE_NOT_FOUND`, `INVALID_CREDENTIALS`.
-- [ ] Use plain strings only (no i18n framework), keeping `SESSION_EXPIRED` and the success copies explicit.
-- [ ] Keep `INVALID_CREDENTIALS` free of any hint about which credential failed (BR-6).
+- [x] Define literal copy constants: `REGISTER_SUCCESS`, `SESSION_EXPIRED`, `ARTICLE_CREATED`, `ARTICLE_UPDATED`, `ARTICLE_DELETED`, `USER_PROMOTED`, `GENERIC_ERROR`, `FORBIDDEN`, `ARTICLE_NOT_FOUND`, `INVALID_CREDENTIALS`.
+- [x] Use plain strings only (no i18n framework), keeping `SESSION_EXPIRED` and the success copies explicit.
+- [x] Keep `INVALID_CREDENTIALS` free of any hint about which credential failed (BR-6).
 
 **Done when:**
 
@@ -229,11 +229,11 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `normalize(status, code, detail)` returning `{ status, code, globalMessage, fieldErrors }`.
-- [ ] Map `duplicate_username` -> `username` field and `duplicate_email` -> `email` field.
-- [ ] Map `validation_error` detail to best-effort field errors; map `invalid_credentials` to a single generic global message.
-- [ ] Map missing response (network/timeout) to `code: network_error` and 5xx to a non-technical generic message.
-- [ ] Test each mapping from plan §5.10.
+- [x] Implement `normalize(status, code, detail)` returning `{ status, code, globalMessage, fieldErrors }`.
+- [x] Map `duplicate_username` -> `username` field and `duplicate_email` -> `email` field.
+- [x] Map `validation_error` detail to best-effort field errors; map `invalid_credentials` to a single generic global message.
+- [x] Map missing response (network/timeout) to `code: network_error` and 5xx to a non-technical generic message.
+- [x] Test each mapping from plan §5.10.
 
 **Done when:**
 
