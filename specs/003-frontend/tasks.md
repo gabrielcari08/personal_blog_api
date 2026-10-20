@@ -103,9 +103,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `get_token`, `set_token`, `clear_token` over `localStorage` using one namespaced key (e.g. `personal_blog.access_token`).
-- [ ] Ensure the module never throws when `localStorage` is unavailable (SSR/test edge) and returns `null` instead.
-- [ ] Test: setting then getting returns the same value; clearing returns `null`; only the token string is stored (no password, no user object).
+- [x] Implement `get_token`, `set_token`, `clear_token` over `localStorage` using one namespaced key (e.g. `personal_blog.access_token`).
+- [x] Ensure the module never throws when `localStorage` is unavailable (SSR/test edge) and returns `null` instead.
+- [x] Test: setting then getting returns the same value; clearing returns `null`; only the token string is stored (no password, no user object).
 
 **Done when:**
 
@@ -124,9 +124,9 @@ Conventions:
 
 **Steps:**
 
-- [ ] Implement `decode(token)` returning `{ user_id, username, role, exp }` or `null` for malformed tokens (no signature verification; decoding only).
-- [ ] Implement `is_expired(claims)` comparing `exp` against the current time.
-- [ ] Test: valid token decodes all four claims; malformed/empty token returns `null`; expired token is detected; future token is not expired.
+- [x] Implement `decode(token)` returning `{ user_id, username, role, exp }` or `null` for malformed tokens (no signature verification; decoding only).
+- [x] Implement `is_expired(claims)` comparing `exp` against the current time.
+- [x] Test: valid token decodes all four claims; malformed/empty token returns `null`; expired token is detected; future token is not expired.
 
 **Done when:**
 
